@@ -12,8 +12,17 @@ body {
 	position: relative;
 }
 
+#app {
+	overflow: hidden;
+}
+
 .remaining {
-	font-size: 1.2em;
+	/*font-size: 1.2em;*/
+	font-weight: bold;
+}
+
+.remaining-amount {
+	cursor: help;
 }
 
 ul {
@@ -90,9 +99,11 @@ dd {
 }
 
 .ember-list-view {
+	left: 0;
 	overflow: auto;
-	position: relative;
-	width: 100%;
+	position: absolute !important;
+	right: 0;
+	width: 100% !important;
 }
 
 .ember-list-item-view {

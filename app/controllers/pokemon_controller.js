@@ -74,7 +74,35 @@ App.PokemonListItemView = Ember.ListItemView.extend({
 App.PokemonListView = Ember.ListView.extend({
 	height: 500,
 	rowHeight: 150,
-	width: 500,
 
-	itemViewClass: 'pokemonListItem'
+	itemViewClass: 'pokemonListItem',
+
+	$window: $(window),
+	$app: null,
+
+	onResizeWindow: function() {
+		var view = this;
+		this.get('$window').on('resize.pokemonListView', function() {
+			Ember.run(function() {
+				view.resizeHeight();
+			});
+		});
+	}.on('didInsertElement'),
+
+	offResizeWindow: function() {
+		this.get('$window').off('resize.pokemonListView');
+	}.on('willDestroyElement'),
+
+	resizeHeight: function(value) {
+		var $app   = this.get('$app');
+
+		if (!$app) {
+			$app = $('#app');
+			this.set('$app', $app);
+		}
+
+		var top    = $app.height() + $app.offset().top;
+		var height = this.get('$window').height() - top;
+		this.set('height', height);
+	}.on('didInsertElement')
 });
