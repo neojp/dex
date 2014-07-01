@@ -1,6 +1,8 @@
-<p>pokemons.hbs</p>
-{{!-- <p class="remaining">
-	You have caught {{caught}} pokemon{{inflection}} and have <strong>{{remaining}}</strong> left
-</p> --}}
+<p>
+	<span class="caught">You have caught {{caught}} pokemon.</span>
+	{{#if remaining}}
+		<span class="remaining">Gotta catch <span class="remaining-amount" title="FML">{{remaining}}</span> more!</span>
+	{{/if}}
+</p>
 
 {{view App.PokemonListView contentBinding="pokemons"}}

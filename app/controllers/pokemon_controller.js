@@ -9,20 +9,14 @@ App.PokemonsController = Ember.ArrayController.extend({
 		json.trainer.records[trainerId].pokemon = _.without(json.trainer.records[trainerId].pokemon, recordId);
 		json = JSON.stringify(json);
 		localStorage.setItem(namespace, json);
-	}
+	},
 
-	// caught: function() {
-	// 	return this.filterBy('isCaught', true).get('length');
-	// }.property('@each.isCaught'),
+	caught: Ember.computed.alias('currentTrainer.pokemon.length'),
 
-	// remaining: function() {
-	// 	return this.filterBy('isCaught', false).get('length');
-	// }.property('@each.isCaught'),
-
-	// inflection: function() {
-	// 	var caught = this.filterBy('isCaught', true).get('length');
-	// 	return caught === 1 ? '' : 's';
-	// }.property('isCaught')
+	remaining: function() {
+		var remaining = this.get('pokemons.length') - this.get('caught');
+		return remaining || 0;
+	}.property('pokemons', 'caught')
 });
 
 App.PokemonListItemView = Ember.ListItemView.extend({
