@@ -3,7 +3,7 @@ App.Trainer = DS.Model.extend({
 	name     : DS.attr('string'),
 	gender   : DS.attr('string'),
 	game     : DS.attr('string'),
-	pokemon  : DS.hasMany('caughtPokemon'),
+	pokemon  : DS.hasMany('caughtPokemon', { async: true }),
 
 	gameTitle: function() {
 		var titles = App.Trainer.GAME_TITLES;
