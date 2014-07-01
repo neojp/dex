@@ -24,6 +24,7 @@
 	<script src="vendor/handlebars/handlebars.js"></script>
 	<script src="vendor/ember/ember.js"></script>
 	<script src="vendor/ember-data/ember-data.js"></script>
+	<script src="vendor/list-view-latest.js"></script>
 	<script src="vendor/ember-localstorage-adapter/localstorage_adapter.js"></script>
 	<script src="vendor/lodash/dist/lodash.js"></script>
 	<script src="vendor/converType.js"></script>

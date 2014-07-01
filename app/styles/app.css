@@ -35,7 +35,8 @@ li:nth-of-type(2n+1) {
 }
 
 .input-container,
-.image-container {
+.image-container,
+.content-container {
 	display: table-cell;
 	padding: 0.5em;
 	vertical-align: middle;
@@ -86,4 +87,21 @@ dd {
 .girl {
 	margin-left: 2em;
 	padding: 2em 2em 2em 5em;
+}
+
+.ember-list-view {
+	overflow: auto;
+	position: relative;
+	width: 100%;
+}
+
+.ember-list-item-view {
+	/*font-size: 17px;*/
+	/*font-weight: 200;*/
+	background: #eee;
+	box-shadow: inset 0 0 1px red;
+	position: absolute;
+	padding: 10px;
+	box-sizing: border-box;
+	width: 100%;
 }

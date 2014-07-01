@@ -1,5 +1,15 @@
 App.PokemonsController = Ember.ArrayController.extend({
-	itemController: 'pokemon'
+	needs: ['application'],
+
+	currentTrainer: Ember.computed.alias('controllers.application.currentTrainer'),
+
+	deletePokemonFromLStorage: function(trainerId, recordId) {
+		var namespace = App.get('LSNamespace');
+		var json = JSON.parse(localStorage.getItem(namespace));
+		json.trainer.records[trainerId].pokemon = _.without(json.trainer.records[trainerId].pokemon, recordId);
+		json = JSON.stringify(json);
+		localStorage.setItem(namespace, json);
+	}
 
 	// caught: function() {
 	// 	return this.filterBy('isCaught', true).get('length');
@@ -15,20 +25,18 @@ App.PokemonsController = Ember.ArrayController.extend({
 	// }.property('isCaught')
 });
 
-App.PokemonController = Ember.ObjectController.extend({
-	needs: ['application'],
+App.PokemonListItemView = Ember.ListItemView.extend({
+	templateName: 'pokemon/item',
 
-	currentTrainer: Ember.computed.alias('controllers.application.currentTrainer'),
-	name          : Ember.computed.alias('species'),
-	number        : Ember.computed.alias('num'),
+	currentTrainer: Ember.computed.alias('controller.currentTrainer'),
 
-	image: function() {
-		return 'assets/sprites/' + this.get('number') + '.png';
-	}.property(),
+	click: function(e) {
+		console.log(this);
+	},
 
 	isCaught: function(key, value) {
-		var controller      = this;
-		var pokemonId       = this.get('id');
+		var controller      = this.get('controller');
+		var pokemonId       = this.get('context.id');
 		var trainer         = this.get('currentTrainer');
 		var trainerId       = trainer.get('id');
 		var trainerPokemons = trainer.get('pokemon');
@@ -38,7 +46,7 @@ App.PokemonController = Ember.ObjectController.extend({
 		if (value !== undefined) {
 			// checkbox is true and pokemon hasn't caught yet
 			if (value && !isCaught) {
-				pokemon = this.store.createRecord('caughtPokemon', {
+				pokemon = controller.store.createRecord('caughtPokemon', {
 					pokemon: pokemonId,
 					trainer: trainer
 				});
@@ -59,13 +67,20 @@ App.PokemonController = Ember.ObjectController.extend({
 		}
 
 		return !!isCaught;
-	}.property('currentTrainer.pokemon.@each'),
+	}.property('currentTrainer.pokemon.@each', 'context.id'),
 
-	deletePokemonFromLStorage: function(trainerId, recordId) {
-		var namespace = App.get('LSNamespace');
-		var json = JSON.parse(localStorage.getItem(namespace));
-		json.trainer.records[trainerId].pokemon = _.without(json.trainer.records[trainerId].pokemon, recordId);
-		json = JSON.stringify(json);
-		localStorage.setItem(namespace, json);
-	}
+	image: function() {
+		return 'assets/sprites/' + this.get('number') + '.png';
+	}.property('number'),
+
+	number: Ember.computed.alias('context.num'),
+	name: Ember.computed.alias('context.species')
+});
+
+App.PokemonListView = Ember.ListView.extend({
+	height: 500,
+	rowHeight: 150,
+	width: 500,
+
+	itemViewClass: 'pokemonListItem'
 });
