@@ -17,11 +17,21 @@ App.TrainerController = Ember.ObjectController.extend({
 		},
 
 		delete: function(record) {
-			record.destroyRecord();
+			var controller = this;
+			var promises   = [];
 
-			if (this.get('isCurrentTrainer')) {
-				this.get('controllers.application').setTrainer(null);
-			}
+			record.get('pokemon').forEach(function(pokemon) {
+				promises.push(pokemon.destroyRecord());
+			});
+
+			Ember.RSVP.all(promises).then(function() {
+				record.destroyRecord();
+
+				if (controller.get('isCurrentTrainer')) {
+					controller.get('controllers.application').setTrainer(null);
+				}
+			});
+
 		}
 	}
 });
