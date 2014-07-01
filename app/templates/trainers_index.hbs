@@ -1,0 +1,24 @@
+<p>trainers_index.hbs</p>
+
+{{#link-to "trainers.new"}}New Trainer{{/link-to}}
+
+<ul>
+	{{#each controller}}
+		<li>
+			<dl>
+				<dt>Trainer Name</dt>
+				<dd>{{name}}</dd>
+				<dt>Trainer ID</dt>
+				<dd>{{trainerId}}</dd>
+				<dt>Pokemon caught</dt>
+				<dd>{{pokemonLength}}</dd>
+			</dl>
+			<p>
+				<button {{action "delete" this}}>Delete</button>
+				{{#unless isCurrentTrainer}}
+					<button {{action "choose" this}}>Choose this trainer</button>
+				{{/unless}}
+			</p>
+		</li>
+	{{/each}}
+</ul>

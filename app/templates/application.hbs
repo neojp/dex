@@ -1,0 +1,14 @@
+<section id="app">
+{{#if currentTrainer}}
+	<dl>
+		<dt>Game</dt>
+			<dd>{{currentTrainer.gameTitle}}</dd>
+		<dt>Trainer Name</dt>
+			<dd>{{currentTrainer.name}}</dd>
+		<dt>ID No.</dt>
+			<dd>{{currentTrainer.trainerId}}</dd>
+	</dl>
+{{/if}}
+<hr>
+{{outlet}}
+</section>

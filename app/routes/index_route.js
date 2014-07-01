@@ -1,0 +1,1 @@
+App.IndexRoute = App.SessionRoute.extend();

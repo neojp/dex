@@ -1,0 +1,11 @@
+{
+  "name": "pokedex",
+  "dependencies": {
+    "handlebars": "*",
+    "jquery": "1.x",
+    "ember": "1.x",
+    "ember-data": "*",
+    "ember-localstorage-adapter": "*",
+    "lodash": "*"
+  }
+}

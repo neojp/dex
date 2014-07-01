@@ -1,0 +1,89 @@
+html {
+	font-family: "Open Sans", sans-serif;
+	font-size: 12px;
+}
+
+body {
+	margin: 0;
+}
+
+.Overflow {
+	padding: 2em;
+	position: relative;
+}
+
+.remaining {
+	font-size: 1.2em;
+}
+
+ul {
+	border: 1px solid #ccc;
+	list-style: none;
+	padding-left: 0;
+}
+
+li {
+	border-top: 1px solid #ccc;
+}
+
+li:first-of-type {
+	border-top: 0;
+}
+
+li:nth-of-type(2n+1) {
+	background: #f9f9f9;
+}
+
+.input-container,
+.image-container {
+	display: table-cell;
+	padding: 0.5em;
+	vertical-align: middle;
+}
+
+.input-container,
+.image-container {
+	width: 1%;
+}
+
+.input-container {
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+}
+
+.image-container img {
+	width: 100px;
+}
+
+dt {
+	clear: left;
+	float: left;
+	font-weight: bold;
+	margin-right: 0.5em;
+}
+
+dt:after {
+	content: ":";
+}
+
+dd {
+	margin-left: 0;
+}
+
+.boy-girl-selection img {
+	cursor: pointer;
+	height: 250px;
+}
+
+.boy-girl-selection .active {
+	outline: 5px solid #ccc;
+}
+
+.boy {
+	padding: 2em 5em;
+}
+
+.girl {
+	margin-left: 2em;
+	padding: 2em 2em 2em 5em;
+}

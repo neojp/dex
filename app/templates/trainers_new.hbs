@@ -1,0 +1,39 @@
+<p>trainers_new.hbs</p>
+
+<blockquote><pre>
+Name: Jkun
+ID No: 30715
+</pre></blockquote>
+
+<form>
+	<p>
+		<label>
+			Game title
+			{{view Ember.Select content=App.Trainer.GAME_TITLES value=game optionValuePath="content.id" optionLabelPath="content.title" prompt="Please select a game title"}}
+		</label>
+	</p>
+
+	<p>Are you a boy or a girl?</p>
+	<div class="boy-girl-selection">
+		<img src="assets/XY_Calem.png" {{action "setGender" "boy"}} {{bind-attr class=":boy isBoy:active"}}>
+		<img src="assets/XY_Serena.png" {{action "setGender" "girl"}} {{bind-attr class=":girl isGirl:active"}}>
+	</div>
+
+	<p>
+		<label>
+			Trainer name
+			{{input type="text" value=name}}
+		</label>
+	</p>
+
+	<p>
+		<label>
+			Trainer ID
+			{{input type="number" min="1" value=id}}
+		</label>
+	</p>
+
+	<p>
+		<button {{action "createTrainer"}}>Create Trainer {{name}}</button>
+	</p>
+</form>
