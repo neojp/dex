@@ -57,7 +57,7 @@ App.PokemonController = Ember.ObjectController.extend({
 		}
 
 		return !!isCaught;
-	}.property('currentTrainer'),
+	}.property('currentTrainer.pokemon.@each'),
 
 	deletePokemonFromLStorage: function(trainerId, recordId) {
 		var namespace = App.get('LSNamespace');
