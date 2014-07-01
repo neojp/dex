@@ -6,6 +6,7 @@
     "ember": "1.x",
     "ember-data": "*",
     "ember-localstorage-adapter": "*",
-    "lodash": "*"
+    "lodash": "*",
+    "json5": "~0.3.0"
   }
 }

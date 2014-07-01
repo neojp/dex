@@ -19,6 +19,8 @@ App.PokemonController = Ember.ObjectController.extend({
 	needs: ['application'],
 
 	currentTrainer: Ember.computed.alias('controllers.application.currentTrainer'),
+	name          : Ember.computed.alias('species'),
+	number        : Ember.computed.alias('num'),
 
 	image: function() {
 		return 'assets/sprites/' + this.get('number') + '.png';

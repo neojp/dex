@@ -27,6 +27,7 @@
 	<script src="vendor/ember-localstorage-adapter/localstorage_adapter.js"></script>
 	<script src="vendor/lodash/dist/lodash.js"></script>
 	<script src="vendor/converType.js"></script>
+	<script src="vendor/json5/lib/json5.js"></script>
 
 	<script src="app/app.js"></script>
 	<script src="app/router.js"></script>

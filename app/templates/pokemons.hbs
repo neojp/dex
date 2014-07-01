@@ -3,7 +3,7 @@
 	You have caught {{caught}} pokemon{{inflection}} and have <strong>{{remaining}}</strong> left
 </p> --}}
 <ul>
-	{{#each controller}}
+	{{#each pokemons itemController="pokemon"}}
 		<li {{bind-attr class="isCaught:caught"}}>
 			<div class="input-container">
 				{{input type="checkbox" checked=isCaught}}
