@@ -16,6 +16,10 @@ App.TrainerController = Ember.ObjectController.extend({
 			this.get('controllers.application').setTrainer(record);
 		},
 
+		goToPokedex: function() {
+			this.transitionToRoute('pokemons');
+		},
+
 		delete: function(record) {
 			var controller = this;
 			var promises   = [];

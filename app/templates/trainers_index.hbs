@@ -15,9 +15,11 @@
 			</dl>
 			<p>
 				<button {{action "delete" this}}>Delete</button>
-				{{#unless isCurrentTrainer}}
+				{{#if isCurrentTrainer}}
+					<button {{action "goToPokedex"}}>Go to the Pokedex!</button>
+				{{else}}
 					<button {{action "choose" this}}>Choose this trainer</button>
-				{{/unless}}
+				{{/if}}
 			</p>
 		</li>
 	{{/each}}
