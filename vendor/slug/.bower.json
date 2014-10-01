@@ -1,0 +1,42 @@
+{
+  "name": "slug",
+  "version": "0.7.1",
+  "homepage": "https://github.com/dodo/node-slug",
+  "authors": [
+    "▟ ▖▟ ▖ <dodo.the.last@gmail.com>"
+  ],
+  "description": "slugifies even utf-8 chars!",
+  "main": "slug.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "slugify",
+    "slug",
+    "string",
+    "utf8",
+    "utf-8",
+    "unicode",
+    "url"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.7.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.7.1",
+    "commit": "bff002a08e8ca62f4dbdd3058db5eee75877c8bc"
+  },
+  "_source": "git://github.com/dodo/node-slug.git",
+  "_target": "~0.7.1",
+  "_originalSource": "slug",
+  "_direct": true
+}

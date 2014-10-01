@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dex</title>
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+	<div id="canvas"></div>
+
+	<script type="text/jst" data-tpl="pokedex">
+		<div class="pokedex-toolbar">
+			<h1 class="pokedex-title">Dex</h1>
+			<div class="pokedex-stats"><%= stats %></div>
+		</div>
+		<ul class="pokedex-pokemon"><%= pokemons %></ul>
+	</script>
+
+	<script type="text/jst" data-tpl="stats">
+		<p>
+			There are <%= total %> pokemon.
+			You have caught <%= caught %>.
+			<strong>Gotta catch <%= remaining %> more!</strong>
+		</p>
+	</script>
+
+	<script type="text/jst" data-tpl="pokemon">
+		<li class="<%= forme ? 'forme forme-' + forme : '' %> <%= caught ? 'caught' : '' %>">
+			<div class="input-container">
+				<input type="checkbox" data-id="<%= id  %>" <%= caught ? 'checked' : '' %>>
+			</div>
+			<div class="image-container">
+				<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="sprites/<%= id %>.png" onload="lzld(this)">
+			</div>
+			<div class="content-container">
+				<strong>#<%= number %>:</strong> <%= name %><br>
+				<% _.forEach(types, function(t) { %>
+					<span class="type type-<%= t.slug %>"><%= t.name %></span>
+				<% }) %>
+			</div>
+		</li>
+	</script>
+
+	<script src="vendor/lazyload/build/lazyload.min.js"></script>
+	<script src="vendor/jquery/dist/jquery.min.js"></script>
+	<script src="vendor/lodash/dist/lodash.min.js"></script>
+	<script src="vendor/slug/slug.js"></script>
+	<script src="vendor/localforage/dist/localforage.min.js"></script>
+
+	<script src="data/pokedex.js"></script>
+	<script src="app.js"></script>
+
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-1102463-9', 'auto');
+	  ga('send', 'pageview');
+	</script>
+</body>
+</html>
