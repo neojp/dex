@@ -16,7 +16,57 @@ App.PokemonsController = Ember.ArrayController.extend({
 	remaining: function() {
 		var remaining = this.get('pokemons.length') - this.get('caught');
 		return remaining || 0;
-	}.property('pokemons', 'caught')
+	}.property('pokemons', 'caught'),
+
+	showFiltered: false,
+
+	filteredPokes: function() {
+		var trainer         = this.get('currentTrainer');
+		var pokemons        = this.get('pokemons');
+		var trainerPokemons = trainer.get('pokemon');
+
+		var filtered = pokemons.filter(function(item, index, enumerable) {
+			if (!!item.forme) {
+				return false;
+			}
+
+			if (item.num < 1) {
+				return false;
+			}
+
+			var pokemonId = item.id;
+			var pokemon   = trainerPokemons.findBy('pokemon', pokemonId);
+			
+			return !(!!pokemon);
+		});
+
+		return filtered;
+	}.property('pokemons.@each', 'currentTrainer.pokemon.@each'),
+
+	actions: {
+		filterPokes: function() {
+			this.toggleProperty('showFiltered');
+		},
+
+		catchEmAll: function() {
+			var controller      = this;
+			var trainer         = this.get('currentTrainer');
+			var pokemons        = this.get('pokemons');
+			var trainerPokemons = trainer.get('pokemon');
+
+			pokemons.forEach(function(poke) {
+				var pokemon = controller.store.createRecord('caughtPokemon', {
+					pokemon: poke.id,
+					trainer: trainer
+				});
+				pokemon.save().then(function() {
+					trainerPokemons.pushObject(pokemon);
+					trainer.save();
+					console.log(pokemon.id);
+				});
+			});
+		}
+	}
 });
 
 App.PokemonListItemView = Ember.ListItemView.extend({
@@ -24,9 +74,9 @@ App.PokemonListItemView = Ember.ListItemView.extend({
 
 	currentTrainer: Ember.computed.alias('controller.currentTrainer'),
 
-	click: function(e) {
-		console.log(this);
-	},
+	// click: function(e) {
+	// 	console.log(this);
+	// },
 
 	isCaught: function(key, value) {
 		var controller      = this.get('controller');
@@ -64,7 +114,8 @@ App.PokemonListItemView = Ember.ListItemView.extend({
 	}.property('currentTrainer.pokemon.@each', 'context.id'),
 
 	image: function() {
-		return 'assets/sprites/' + this.get('number') + '.png';
+		// return 'assets/sprites/' + this.get('number') + '.png';
+		return 'assets/serebii/' + this.get('context.id') + '.png';
 	}.property('number'),
 
 	number: Ember.computed.alias('context.num'),
@@ -72,7 +123,7 @@ App.PokemonListItemView = Ember.ListItemView.extend({
 });
 
 App.PokemonListView = Ember.ListView.extend({
-	height: 500,
+	height: 1500,
 	rowHeight: 150,
 
 	itemViewClass: 'pokemonListItem',

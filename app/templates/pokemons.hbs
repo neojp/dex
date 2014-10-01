@@ -5,4 +5,11 @@
 	{{/if}}
 </p>
 
-{{view App.PokemonListView contentBinding="pokemons"}}
+{{!-- <p><button {{action "catchEmAll"}}>Catch em all</button></p> --}}
+<p><button {{action "filterPokes"}}>Filter em all</button></p>
+
+{{#if showFiltered}}
+	{{view App.PokemonListView contentBinding="filteredPokes"}}
+{{else}}
+	{{view App.PokemonListView contentBinding="pokemons"}}
+{{/if}}

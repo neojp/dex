@@ -8,8 +8,13 @@ App.PokemonsRoute = App.SessionRoute.extend({
 				data = JSON5.parse(data);
 				var pokemons = [];
 				for(var key in data) {
-					if(data.hasOwnProperty(key) && key !== "toString"){
+					if (data.hasOwnProperty(key) && key !== "toString") {
 						data[key].id = key;
+
+						if (data[key].forme || data[key].num < 1 || data[key].num > 719) {
+							continue;
+						}
+
 						pokemons.push(data[key]);
 					}
 				}

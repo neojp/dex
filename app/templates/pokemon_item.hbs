@@ -1,16 +1,22 @@
-<div class="input-container">
-	{{input type="checkbox" checked=view.isCaught}}
-</div>
-<div class="image-container">
-	<img {{bind-attr src=view.image}}>
-</div>
-<div class="content-container">
-	<dl>
-		<dt>ID</dt>
-		<dd>{{id}}</dd>
-		<dt>Number</dt>
-		<dd>{{num}} - {{view.number}}</dd>
-		<dt>Name</dt>
-		<dd>{{species}} - {{view.name}}</dd>
-	</dl>
+<div class="pokemon-container">
+	<div class="input-container">
+		{{input type="checkbox" checked=view.isCaught}}
+	</div>
+	<div class="image-container">
+		<img {{bind-attr src=view.image}}>
+	</div>
+	<div class="content-container">
+		<dl>
+			{{!-- 
+			<dt>ID</dt>
+			<dd>{{id}}</dd>
+			<dt>Number</dt>
+			<dd>{{view.number}}</dd>
+			<dt>Name</dt>
+			<dd>{{view.name}}</dd>
+			 --}}
+			<dt>#{{view.number}}</dt>
+			<dd>{{view.name}}</dd>
+		</dl>
+	</div>
 </div>
